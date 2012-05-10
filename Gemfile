@@ -6,6 +6,7 @@ gem 'twitter-bootstrap-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'chosen-rails'
+gem 'resque', :require => "resque/server"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
