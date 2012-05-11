@@ -1,6 +1,8 @@
 FocusMail::Application.routes.draw do
 
   root :to => 'home#index'
+  match 'send_email' => 'home#send_email', via: 'post'
+  match 'new_email' => 'home#new_email', via: 'get'
   mount Resque::Server, :at => '/resque'
 
   # The priority is based upon order of creation:
