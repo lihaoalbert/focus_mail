@@ -1,0 +1,21 @@
+<%= form_tag('/send_email', method: 'post') do %>
+  <%= label_tag(:from_name, "From Name:") %>
+  <%= text_field_tag(:from_name, "name#{rand(1..100)}") %>
+
+  <%= label_tag(:from_email, "From Email:") %>
+  <%= text_field_tag(:from_email, "test#{rand(1..100)}@test.com") %>
+
+  <%= label_tag(:subject, "Subject:") %>
+  <%= text_field_tag(:subject, "Test Email #{Time.now}") %>
+
+  <%= label_tag(:to_email, "To Email:") %>
+  <%= text_field_tag(:to_email, "neosoyn@gmail.com") %>
+
+  <%= label_tag(:amount, "Amount:") %>
+  <%= number_field_tag(:amount, 1, in: 1..100) %>
+
+  <%= label_tag(:content, "Content:") %>
+  <%= text_area_tag(:content, nil, size: '25x10') %>
+  <br />
+  <%= submit_tag("Send" ,class: 'btn btn-primary') %>
+<% end %>
