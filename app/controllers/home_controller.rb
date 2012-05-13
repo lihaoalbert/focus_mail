@@ -9,11 +9,11 @@ class HomeController < ApplicationController
   def send_email
     from_name = params[:from_name]
     from_email = params[:from_email]
-    from = from_name.present? ? "#{params[:from_name]} <#{params[:from_email]}>" : params[:from_email]
+    from = from_name.present? ? %{"#{params[:from_name]}" <#{params[:from_email]}>} : params[:from_email]
     subject = params[:subject]
     to_email = params[:to_email]
     to_name = params[:to_name]
-    to = to_name.present? ? "#{params[:to_name]} <#{params[:to_email]}>" : params[:to_email]
+    to = to_name.present? ? %{"#{params[:to_name]}" <#{params[:to_email]}>} : params[:to_email]
     body = params[:body]
     amount = params[:amount] || 1
 
