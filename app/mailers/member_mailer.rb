@@ -8,10 +8,10 @@ class MemberMailer < ActionMailer::Base
     mail(to: 'neosoyn@gmail.com', subject: 'Email test')
   end
 
-  def send_email(from, to, subject, content)
+  def send_email(from, to, subject, body)
     mail(from: from, to: to, subject: subject) do |format|
-      format.text { render text: content }
-      format.html { render text: "#{content}" }
+      format.text { render text: body}
+      format.html { render text: "#{body}" }
     end
   end
 

@@ -14,8 +14,8 @@
   <%= label_tag(:amount, "Amount:") %>
   <%= number_field_tag(:amount, 1, in: 1..100) %>
 
-  <%= label_tag(:content, "Content:") %>
-  <%= text_area_tag(:content, nil, size: '25x10') %>
+  <%= label_tag(:body, "body:") %>
+  <%= text_area_tag(:body, nil, size: '25x10') %>
   <br />
   <%= submit_tag("Send" ,class: 'btn btn-primary') %>
 <% end %>
