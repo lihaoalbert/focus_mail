@@ -1,27 +1,21 @@
-<h1>Listing members</h1>
+<h1><%= @list.name %></h1>
+<br />
 
-<table>
+<h3>Listing members</h3>
+
+<table class="table table-striped">
   <tr>
+    <th>Id</th>
     <th>Name</th>
     <th>Email</th>
-    <th>List</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Create Date</th>
+    <th>Action</th>
   </tr>
 
-<% @members.each do |member| %>
-  <tr>
-    <td><%= member.name %></td>
-    <td><%= member.email %></td>
-    <td><%= member.list_id %></td>
-    <td><%= link_to 'Show', member %></td>
-    <td><%= link_to 'Edit', edit_member_path(member) %></td>
-    <td><%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  <%= render @members if @members %>
+
 </table>
 
 <br />
 
-<%= link_to 'New Member', new_member_path %>
+<%= link_to 'New Member', new_list_member_path(@list.id) %>

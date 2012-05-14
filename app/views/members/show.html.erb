@@ -16,5 +16,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<%= link_to 'Edit', edit_list_member_path(@member.list, @member) %> |
+<%= link_to 'Back', list_members_path(@member.list) %>

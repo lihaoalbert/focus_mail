@@ -3,6 +3,7 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.all
+    @list = List.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,11 +15,13 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @list = List.find(params[:id])
+    @members = @list.members
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @list }
-    end
+    render :template => "members/index"
+    #respond_to do |format|
+      #format.html # show.html.erb
+      #format.json { render json: @list }
+    #end
   end
 
   # GET /lists/new
@@ -28,13 +31,18 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @list }
+      format.js
     end
   end
 
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /lists
@@ -45,10 +53,10 @@ class ListsController < ApplicationController
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render json: @list, status: :created, location: @list }
+        format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+        format.js { render action: "new" }
       end
     end
   end
@@ -61,10 +69,10 @@ class ListsController < ApplicationController
     respond_to do |format|
       if @list.update_attributes(params[:list])
         format.html { redirect_to @list, notice: 'List was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+        format.js { render action: "edit" }
       end
     end
   end
@@ -77,7 +85,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to lists_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end

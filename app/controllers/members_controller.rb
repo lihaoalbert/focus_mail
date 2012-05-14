@@ -1,18 +1,12 @@
 class MembersController < ApplicationController
-  # GET /members
-  # GET /members.json
-  def index
-    @members = Member.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @members }
-    end
+  def index
+    @list = List.find(params[:list_id])
+    @members = @list.members
   end
 
-  # GET /members/1
-  # GET /members/1.json
   def show
+    @list = List.find(params[:list_id])
     @member = Member.find(params[:id])
 
     respond_to do |format|
@@ -21,10 +15,9 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /members/new
-  # GET /members/new.json
   def new
-    @member = Member.new
+    @list = List.find(params[:list_id])
+    @member = @list.members.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,19 +25,20 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /members/1/edit
   def edit
-    @member = Member.find(params[:id])
+    @list = List.find(params[:list_id])
+    @member = @list.members.find(params[:id])
   end
 
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(params[:member])
+    @list = List.find(params[:list_id])
+    @member = @list.members.create(params[:member])
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.html { redirect_to list_member_path(@list.id, @member.id), notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
       else
         format.html { render action: "new" }
@@ -56,11 +50,12 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
-    @member = Member.find(params[:id])
+    @list = List.find(params[:list_id])
+    @member = @list.members.find(params[:id])
 
     respond_to do |format|
       if @member.update_attributes(params[:member])
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to list_member_path(@list.id, @member.id), notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,7 +67,8 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    @member = Member.find(params[:id])
+    @list = List.find(params[:list_id])
+    @member = @list.members.find(params[:id])
     @member.destroy
 
     respond_to do |format|

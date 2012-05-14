@@ -1,0 +1,4 @@
+$("#<%= dom_id @list %>").replaceWith("<%= j render @list %>");
+<% @list = List.new %>
+$("#form > form").replaceWith("<%= j render "form" %>");
+$("#new_list")[0].reset();

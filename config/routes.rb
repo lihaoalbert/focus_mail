@@ -1,8 +1,8 @@
 FocusMail::Application.routes.draw do
 
-  resources :members
-
-  resources :lists
+  resources :lists do
+    resources :members
+  end
 
   root :to => 'home#index'
   match 'send_email' => 'home#send_email', via: 'post'
