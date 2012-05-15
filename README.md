@@ -15,7 +15,7 @@ By IntFocus
 In order to run the system (for demo and development purposes), you may follow the following steps:
 
     git clone git@github.com:lihaoalbert/focus_mail.git
-    cd aow
+    cd focus_mail
     cp config/database.yml.sample config/database.yml
     bundle install
     rake db:create
