@@ -1,37 +1,46 @@
-<%= form_for(@campaign) do |f| %>
-  <% if @campaign.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+<%= form_for @campaign, :html => { :class => 'form-horizontal' }, remote: true do |f| %>
 
-      <ul>
-      <% @campaign.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= render :partial => "common/form_error", :locals => { model: @campaign} %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :from_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :from_name, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :from_name %><br />
-    <%= f.text_field :from_name %>
+
+
+  <div class="control-group">
+    <%= f.label :from_email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :from_email, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :from_email %><br />
-    <%= f.text_field :from_email %>
+
+  <div class="control-group">
+    <%= f.label :subject, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :subject, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
+
+  <div class="control-group">
+    <%= f.label :email_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :email_id, :class => 'number_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email_id %><br />
-    <%= f.number_field :email_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <a onclick="$('#<%= dom_id @campaign, action_name %>').parent().html('');return false;", class='btn'>Cancel</a>
   </div>
 <% end %>
+

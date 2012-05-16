@@ -1,0 +1,4 @@
+$("#<%= dom_id @campaign %>").replaceWith("<%= j render @campaign %>");
+<% @campaign = Campaign.new %>
+$("#form > form").replaceWith("<%= j render "form" %>");
+$("#new_campaign")[0].reset();

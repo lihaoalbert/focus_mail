@@ -1,31 +1,27 @@
-<h1>Listing campaigns</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>From name</th>
-    <th>From email</th>
-    <th>Subject</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @campaigns.each do |campaign| %>
-  <tr>
-    <td><%= campaign.name %></td>
-    <td><%= campaign.from_name %></td>
-    <td><%= campaign.from_email %></td>
-    <td><%= campaign.subject %></td>
-    <td><%= campaign.email_id %></td>
-    <td><%= link_to 'Show', campaign %></td>
-    <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-    <td><%= link_to 'Destroy', campaign, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = Campaign.new.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<table class="table table-striped" id="campaigns">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>From name</th>
+      <th>From email</th>
+      <th>Subject</th>
+      <th>Email id</th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <%= render campaign %>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'New Campaign', new_campaign_path %>
+<div id="form">
+  <%= render :partial => "form" %>
+</div>
+
