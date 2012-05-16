@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Template:</b>
+  <%= @template_entry.template_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @template_entry.type %>
+</p>
+
+<p>
+  <b>Key:</b>
+  <%= @template_entry.key %>
+</p>
+
+<p>
+  <b>Default value:</b>
+  <%= @template_entry.default_value %>
+</p>
+
+
+<%= link_to 'Edit', edit_template_entry_path(@template_entry) %> |
+<%= link_to 'Back', template_entries_path %>

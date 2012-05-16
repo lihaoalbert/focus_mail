@@ -1,0 +1,29 @@
+<h1>Listing template_entries</h1>
+
+<table>
+  <tr>
+    <th>Template</th>
+    <th>Type</th>
+    <th>Key</th>
+    <th>Default value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @template_entries.each do |template_entry| %>
+  <tr>
+    <td><%= template_entry.template_id %></td>
+    <td><%= template_entry.type %></td>
+    <td><%= template_entry.key %></td>
+    <td><%= template_entry.default_value %></td>
+    <td><%= link_to 'Show', template_entry %></td>
+    <td><%= link_to 'Edit', edit_template_entry_path(template_entry) %></td>
+    <td><%= link_to 'Destroy', template_entry, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Template entry', new_template_entry_path %>

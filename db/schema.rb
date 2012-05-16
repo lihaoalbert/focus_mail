@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516032648) do
+ActiveRecord::Schema.define(:version => 20120516035154) do
 
   create_table "campaign_members", :force => true do |t|
     t.integer  "campaign_id"
@@ -48,6 +48,22 @@ ActiveRecord::Schema.define(:version => 20120516032648) do
     t.string   "name"
     t.string   "email"
     t.integer  "list_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "template_entries", :force => true do |t|
+    t.integer  "template_id"
+    t.string   "type"
+    t.string   "key"
+    t.string   "default_value"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.string   "file_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

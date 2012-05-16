@@ -1,5 +1,9 @@
 FocusMail::Application.routes.draw do
 
+  resources :template_entries
+
+  resources :templates
+
   resources :campaign_members
 
   resources :emails
