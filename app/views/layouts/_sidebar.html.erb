@@ -2,12 +2,21 @@
   <div class="well sidebar-nav">
     <h3>Sidebar</h3>
     <ul class="nav nav-list">
-      <li class="nav-header">Email</li>
+      <li class="nav-header">Demo</li>
       <li><%= link_to "Send", new_email_path %></li>
-    </ul>
-    <ul class="nav nav-list">
-      <li class="nav-header">Members</li>
-      <li><%= link_to "Lists", lists_path %></li>
+      <li class="nav-header">Lists</li>
+      <li><%= link_to "all", lists_path %></li>
+      <li class="nav-header">Campaigns</li>
+      <li><%= link_to "all", campaigns_path %></li>
+      <li><%= link_to "new", new_campaign_path %></li>
+      <li class="nav-header">Templates</li>
+      <li><%= link_to "all", templates_path %></li>
+      <li><%= link_to "new", new_template_path %></li>
+      <li class="nav-header">Template_entry</li>
+      <li><%= link_to "all", template_entries_path %></li>
+      <li><%= link_to "new", new_template_entry_path %></li>
+      <li class="nav-header">Emails</li>
+      <li><%= link_to "all", emails_path %></li>
     </ul>
   </div>
 </div>
