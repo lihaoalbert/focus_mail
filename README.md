@@ -12,9 +12,7 @@ By IntFocus
 
 ## Setup Guide
 
-* install redis and start redis-server
-
-* clone the repo, start Rails server and start resque workers
+First you need to install redis and start redis server and then clone the repo start Rails server and start resque workers
 
     git clone git@github.com:lihaoalbert/focus_mail.git
     cd focus_mail
