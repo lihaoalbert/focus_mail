@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @email.body %>
+</p>
+
+<p>
+  <b>Template:</b>
+  <%= @email.template_id %>
+</p>
+
+<p>
+  <b>Template entries:</b>
+  <%= @email.template_entries %>
+</p>
+
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>

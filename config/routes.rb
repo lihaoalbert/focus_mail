@@ -1,5 +1,11 @@
 FocusMail::Application.routes.draw do
 
+  resources :campaign_members
+
+  resources :emails
+
+  resources :campaigns
+
   resources :lists do
     resources :members
   end
