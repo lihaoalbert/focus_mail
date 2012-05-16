@@ -12,7 +12,9 @@ By IntFocus
 
 ## Setup Guide
 
-In order to run the system (for demo and development purposes), you may follow the following steps:
+* install redis and start redis-server
+
+* clone the repo, start Rails server and start resque workers
 
     git clone git@github.com:lihaoalbert/focus_mail.git
     cd focus_mail
@@ -22,8 +24,11 @@ In order to run the system (for demo and development purposes), you may follow t
     rake db:migrate
     rake db:seed
     rails s
+    COUNT=4 QUEUE=* VERBOSE=1 rake resque:workers
 
 Done, fire up your browser and browse to `http://localhost:3000/` :)
+
+Go to `http://localhost:3000/resque/` to see Resque status.
 
 ## Contributing
 
