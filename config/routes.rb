@@ -19,6 +19,11 @@ FocusMail::Application.routes.draw do
   match 'new_email' => 'home#new_email', via: 'get'
   mount Resque::Server, :at => '/resque'
 
+  match 'members/imexport/:list_id' => 'members#imexport', :as => :members_imexport
+  get 'members/export'
+  get 'members/import_template'
+  match 'members/import' => 'members#import', :via => :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

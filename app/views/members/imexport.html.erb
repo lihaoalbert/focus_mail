@@ -1,0 +1,22 @@
+<h3>Export Members</h3>
+<%= link_to "Export as Excel", members_export_path(:format => 'xls'), :class => "btn btn-primary" %>
+<br />
+<br />
+<h3>Get Import Template</h3>
+You should download the template first
+<br />
+<%= link_to "Get Import Template", members_import_template_path(:format => 'xls'), :class => "btn btn-primary" %>
+<br />
+<br />
+<h3>Import Members</h3>
+<%=form_tag('/members/import', :multipart => true) %>
+Please select a excel file to upload first
+<%= hidden_field_tag(:list_id, @list_id) %>
+<p>
+<%= file_field_tag 'excel_file' %>
+</p>
+<p>
+<%= submit_tag "upload", :class => 'btn btn-primary' %>
+</p>
+</form>
+

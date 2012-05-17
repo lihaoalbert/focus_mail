@@ -1,7 +1,11 @@
 <h1><%= @list.name %></h1>
 <br />
 
-<h3>Listing members</h3>
+<%= link_to 'New', new_list_member_path(@list.id), class: 'btn btn-primary' %>
+<%= link_to 'Import', members_imexport_path(@list.id), :class => 'btn' %>
+<br />
+<br />
+<h3>There are <%= @list.members.size %> members</h3>
 
 <table class="table table-striped">
   <tr>
@@ -18,4 +22,3 @@
 
 <br />
 
-<%= link_to 'New Member', new_list_member_path(@list.id) %>

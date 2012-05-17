@@ -1,0 +1,35 @@
+<% if @errors.present? %>
+  <h1>Failure</h1>
+  <ul>
+    <% @errors.each do |error| %>
+      <li>
+      Problems in line number <%= error[0] %>:
+      <% error[1].full_messages.each do |msg|%>
+        <p><%= msg %> </p>
+      <%end%>
+      </li>
+    <% end %>
+  </ul>
+<%else%>
+  <h1>Success to import <%= @members.size %> members</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.id %></td>
+          <td><%= link_to member.name, list_member_path(member.list.id, member.id) %></td>
+          <td><%= member.email %></td>
+          <td><%= member.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
