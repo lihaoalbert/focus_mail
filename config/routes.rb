@@ -1,8 +1,8 @@
 FocusMail::Application.routes.draw do
 
-  resources :template_entries
-
-  resources :templates
+  resources :templates do
+    resources :entries
+  end
 
   resources :campaign_members
 
@@ -16,13 +16,15 @@ FocusMail::Application.routes.draw do
 
   root :to => 'home#index'
   match 'send_email' => 'home#send_email', via: 'post'
-  match 'new_email' => 'home#new_email', via: 'get'
+  match 'generate_email' => 'home#generate_email', via: 'get'
   mount Resque::Server, :at => '/resque'
 
   match 'members/imexport/:list_id' => 'members#imexport', :as => :members_imexport
   get 'members/export'
   get 'members/import_template'
   match 'members/import' => 'members#import', :via => :post
+
+  match 'member_mailer/:action', :controller => "member_mailer"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

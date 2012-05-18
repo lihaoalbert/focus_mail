@@ -1,25 +1,12 @@
-<h1>Listing templates</h1>
+<div id="templates_title" style="margin-bottom: 20px">
+  <h1 style="display:inline">Templates</h1>
+  <div style="float:right">
+    <%= link_to 'Add a Entry', new_template_path, :class => 'btn', remote: true %>
+  </div>
+</div>
+<div id="templates_form">
+</div>
+<div id="templates_info">
+  <%= render @templates %>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>File name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @templates.each do |template| %>
-  <tr>
-    <td><%= template.name %></td>
-    <td><%= template.file_name %></td>
-    <td><%= link_to 'Show', template %></td>
-    <td><%= link_to 'Edit', edit_template_path(template) %></td>
-    <td><%= link_to 'Destroy', template, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Template', new_template_path %>

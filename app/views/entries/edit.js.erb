@@ -1,0 +1,16 @@
+$("#<%= dom_id @entry.template %> .template_form").html("<%= j render "form" %>");
+str = $("#<%= dom_id @template %> select").val();
+if(str == "select" || str == "multiselect"){
+  $("#<%= dom_id @template %>_collection").show();
+} else {
+  $("#<%= dom_id @template %>_collection").hide();
+}
+$("#<%= dom_id @template %> select").change(function () {
+  var str = "";
+  str += $(this).val();
+  if(str == "select" || str == "multiselect"){
+    $("#<%= dom_id @template %>_collection").show();
+  } else {
+    $("#<%= dom_id @template %>_collection").hide();
+  }
+});

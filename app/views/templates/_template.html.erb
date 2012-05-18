@@ -1,0 +1,28 @@
+<div id="<%= dom_id template %>" class="box" >
+  <div class="template_info">
+    <h3 style="display:inline"><%= template.name %> - <h5 style="display:inline"><%= template.file_name %></h5></h3>
+    <div style="float:right" class="title">
+      <%= link_to 'Edit', edit_template_path(template), :class => 'btn btn-mini', remote: true %>
+      <%= link_to 'Add a Entry', new_template_entry_path(template.id), :class => 'btn btn-mini', remote: true %>
+      <%= link_to 'Destroy', template_path(template), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', remote: true %>
+    </div>
+  </div>
+  <div class="entries_info">
+    <% has_entries = template.entries && template.entries.present? %>
+    <table class="table table-striped entries" style="display:<%= has_entries ? 'table' : 'none' %>">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Default Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render template.entries if has_entries %>
+      </tbody>
+    </table>
+  </div>
+  <div class="template_form">
+  </div>
+</div>
+

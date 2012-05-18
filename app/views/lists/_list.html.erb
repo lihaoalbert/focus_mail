@@ -3,9 +3,11 @@
   <td><%= list.members.size %></td>
   <td><%=l list.created_at %></td>
   <td>
-    <%= link_to 'Import', members_imexport_path(list.id), :class => 'btn btn-mini' %>
+    <%= link_to 'Import Mem', members_imexport_path(list.id), :class => 'btn btn-mini' %>
+    <%= link_to 'Add Mem', new_list_member_path(list.id), :class => 'btn btn-mini' %>
+    <%= link_to 'Member', list_path(list), :class => 'btn btn-mini' %>
     <%= link_to 'Edit', edit_list_path(list), :class => 'btn btn-mini', :remote => true %>
-    <%= link_to 'Destroy', list_path(list), :method => :delete,
+    <%= link_to 'Del', list_path(list), :method => :delete,
       :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :remote => true %>
   </td>
 </tr>

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe "template_entries/show" do
+describe "entries/show" do
   before(:each) do
-    @template_entry = assign(:template_entry, stub_model(TemplateEntry,
+    @entry = assign(:entry, stub_model(Entry,
       :template_id => 1,
       :type => "Type",
-      :key => "Key",
+      :name => "Name",
       :default_value => "Default Value"
     ))
   end
@@ -15,7 +15,7 @@ describe "template_entries/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/1/)
     rendered.should match(/Type/)
-    rendered.should match(/Key/)
+    rendered.should match(/Name/)
     rendered.should match(/Default Value/)
   end
 end

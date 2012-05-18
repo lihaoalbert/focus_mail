@@ -1,0 +1,4 @@
+$("#<%= dom_id @entry %>").remove();
+<% if @template.entries.empty? %>
+    $("#<%= dom_id @template %> .entries").css('display', 'none');
+<% end %>

@@ -1,0 +1,3 @@
+$("#<%= dom_id @template %> .entries").css('display', 'table');
+$('<%= j render @entry %>').appendTo($("#<%= dom_id @template %> .entries")).hide().fadeIn();
+$("#<%= dom_id @template %> .template_form").html("");
