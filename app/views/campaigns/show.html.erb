@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <b>Email:</b>
-  <%= @campaign.email_id %>
+  <b>Template:</b>
+  <%= @campaign.template.try(:name) %>
 </p>
 
 

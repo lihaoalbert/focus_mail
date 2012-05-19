@@ -25,17 +25,10 @@ ActiveRecord::Schema.define(:version => 20120518114231) do
     t.string   "from_name"
     t.string   "from_email"
     t.string   "subject"
-    t.integer  "email_id"
+    t.integer  "template_id"
+    t.text     "entries"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "emails", :force => true do |t|
-    t.text     "body"
-    t.integer  "template_id"
-    t.text     "template_entries"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
   end
 
   create_table "entries", :force => true do |t|

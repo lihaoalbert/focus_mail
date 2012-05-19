@@ -3,7 +3,7 @@
   <td><%= campaign.from_name %></td>
   <td><%= campaign.from_email %></td>
   <td><%= campaign.subject %></td>
-  <td><%= campaign.email_id %></td>
+  <td><%= campaign.template.try(:name) %></td>
   <td><%=l campaign.created_at %></td>
   <td>
     <%= link_to 'Edit', edit_campaign_path(campaign), :class => 'btn btn-mini', :remote => true %>
