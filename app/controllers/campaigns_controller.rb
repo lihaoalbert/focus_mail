@@ -72,4 +72,20 @@ class CampaignsController < ApplicationController
       format.js
     end
   end
+
+  def deliver
+    @campaign = Campaign.find(params[:id])
+    from_name = @campaign.from_name
+    from_email = @campaign.from_email
+    from = from_name.present? ? %{"#{from_name}" <#{from_email}>} : from_email
+    subject = @campaign.subject
+    template_name = @campaign.template.file_name
+
+    @campaign.members.each do |member|
+      to_email = member.email
+      to_name = member.name
+      to = to_name.present? ? %{"#{to_name}" <#{to_email}>} : to_email
+      MemberMailer.send_email_with_template(from, to, subject, template_name).deliver
+    end
+  end
 end

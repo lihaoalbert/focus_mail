@@ -15,4 +15,8 @@ class MemberMailer < ActionMailer::Base
     end
   end
 
+  def send_email_with_template(from, to, subject, template_name)
+    mail(from: from, to: to, subject: subject, template_name: template_name)
+  end
+
 end

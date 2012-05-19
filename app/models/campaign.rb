@@ -7,5 +7,5 @@ class Campaign < ActiveRecord::Base
   has_many :members, :through => :campaign_members, uniq: true
   belongs_to :template
 
-  validates_presence_of :name
+  validates_presence_of :name, :template_id
 end
