@@ -2,39 +2,80 @@
 
   <%= render :partial => "common/form_error", :locals => { model: @campaign} %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Step 1</a></li>
+      <li><a href="#tab2" data-toggle="tab">Step 2</a></li>
+      <li><a href="#tab3" data-toggle="tab">Step 3</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <div class="control-group">
+          <%= f.label :name, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name, :class => 'text_field' %>
+          </div>
+        </div>
 
-  <div class="control-group">
-    <%= f.label :from_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :from_name, :class => 'text_field' %>
-    </div>
-  </div>
+        <div class="control-group">
+          <%= f.label :from_name, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :from_name, :class => 'text_field' %>
+          </div>
+        </div>
 
 
-  <div class="control-group">
-    <%= f.label :from_email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :from_email, :class => 'text_field' %>
-    </div>
-  </div>
+        <div class="control-group">
+          <%= f.label :from_email, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :from_email, :class => 'text_field' %>
+          </div>
+        </div>
 
-  <div class="control-group">
-    <%= f.label :subject, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :subject, :class => 'text_field' %>
-    </div>
-  </div>
+        <div class="control-group">
+          <%= f.label :subject, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :subject, :class => 'text_field' %>
+          </div>
+        </div>
+      </div>
 
-  <div class="control-group">
-    <%= f.label :email_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :email_id, :class => 'number_field' %>
+      <div class="tab-pane" id="tab2">
+        <div class="control-group">
+          <%= f.label :list_id, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :list_id, List.all.map{|list| [list.name, list.id]}, { :include_blank => "select a list"} %>
+            <% List.all.each do |list| %>
+              <h3><%= list.name %></h3>
+              <% list.members.each do |member| %>
+                <%= check_box_tag :member_ids, member.id, @campaign.members.include?(member), :name => 'campaign[member_ids][]' -%>
+                <%= label_tag :member_ids, member.name, :style => "display:inline" %>
+                <br />
+                <br />
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab3">
+        <div class="control-group">
+          <%= f.label :email_id, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.number_field :email_id, :class => 'number_field' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :email_id, :class => 'control-label' %>
+          <%= f.select :list_id, List.all.map{|list| [list.name, list.id]}, { :include_blank => "select a list"} %>
+          <div class="controls">
+            <%= f.number_field :email_id, :class => 'number_field' %>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
