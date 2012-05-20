@@ -13,9 +13,9 @@
 
 ActiveRecord::Schema.define(:version => 20120518114231) do
 
-  create_table "campaign_members", :force => true do |t|
+  create_table "campaign_lists", :force => true do |t|
     t.integer  "campaign_id"
-    t.string   "member_id"
+    t.string   "list_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

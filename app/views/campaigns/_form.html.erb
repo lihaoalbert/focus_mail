@@ -44,15 +44,11 @@
         <div class="control-group">
           <%= f.label :list_id, :class => 'control-label' %>
           <div class="controls">
-            <%= f.select :list_id, List.all.map{|list| [list.name, list.id]}, { :include_blank => "select a list"} %>
             <% List.all.each do |list| %>
-              <h3><%= list.name %></h3>
-              <% list.members.each do |member| %>
-                <%= check_box_tag :member_ids, member.id, @campaign.members.include?(member), :name => 'campaign[member_ids][]' -%>
-                <%= label_tag :member_ids, member.name, :style => "display:inline" %>
-                <br />
-                <br />
-              <% end %>
+              <%= check_box_tag :list_ids, list.id, @campaign.lists.include?(list), :name => 'campaign[list_ids][]' -%>
+              <%= label_tag :list_ids, list.name, :style => "display:inline" %>
+              <br />
+              <br />
             <% end %>
           </div>
         </div>
@@ -63,6 +59,7 @@
           <%= f.label :template_id, :class => 'control-label' %>
           <div class="controls">
             <%= f.select :template_id, ActiveRecord::Base::Template.all.map{|t| [t.name, t.id]}, { :include_blank => "select a template"} %>
+
           </div>
         </div>
 
