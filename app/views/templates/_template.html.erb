@@ -2,6 +2,7 @@
   <div class="template_info">
     <h3 style="display:inline"><%= template.name %> - <h5 style="display:inline"><%= template.file_name %></h5></h3>
     <div style="float:right" class="title">
+      <a onclick="$('#<%= dom_id template %> .source').toggleClass('hidden');return false;", class='btn btn-mini'>Source</a>
       <%= link_to 'Edit', edit_template_path(template), :class => 'btn btn-mini', remote: true %>
       <%= link_to 'Add a Entry', new_template_entry_path(template.id), :class => 'btn btn-mini', remote: true %>
       <%= link_to 'Destroy', template_path(template), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', remote: true %>
@@ -21,6 +22,11 @@
         <%= render template.entries if has_entries %>
       </tbody>
     </table>
+  </div>
+  <div class="source hidden">
+    <pre>
+    <%= IO.readlines(File.expand_path("../../member_mailer/#{template.file_name}.html.erb", __FILE__)).join("").strip %>
+  </pre>
   </div>
   <div class="template_form">
   </div>
