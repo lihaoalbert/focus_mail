@@ -1,5 +1,11 @@
 FocusMail::Application.routes.draw do
 
+  resources :tracks
+
+  resources :clicks
+
+  resources :links
+
   resources :templates do
     resources :entries
   end
