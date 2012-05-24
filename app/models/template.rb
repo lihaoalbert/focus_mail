@@ -4,10 +4,12 @@ class Template < ActiveRecord::Base
   has_many :campaigns
 
   def source
-    @source = IO.readlines(File.expand_path("../../views/member_mailer/#{self.file_name}.html.erb", __FILE__)).join("").strip
+    @source = IO.readlines(Rails.root.join('app/views/member_mailer', "#{self.file_name}.html.erb")).join("").strip
   end
 
   def source= (val)
-    File.open(File.expand_path("../../views/member_mailer/#{self.file_name}.html.erb", __FILE__), 'wb'){ |f| f.write(val) }
+    #p Rails.configuration.splitor_start
+    #p Rails.configuration.splitor_end
+    File.open(Rails.root.join("app/views/member_mailer", "#{self.file_name}.html.erb"), 'wb'){ |f| f.write(val) }
   end
 end
