@@ -29,7 +29,7 @@ FocusMail::Application.routes.draw do
   get 'members/import_template'
   match 'members/import' => 'members#import', :via => :post
 
-  match 'member_mailer/:action', :controller => "member_mailer", :as => :preview
+  match 'member_mailer/preview/:file_name', :controller => "member_mailer", :action => "preview", :as => :preview
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
