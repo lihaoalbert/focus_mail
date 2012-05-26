@@ -25,8 +25,8 @@
   </div>
   <div class="source hidden">
     <pre>
-    <%= IO.readlines(File.expand_path("../../member_mailer/#{template.file_name}.html.erb", __FILE__)).join("").strip %>
-  </pre>
+      <%= IO.readlines(Rails.root.join('lib/emails', "#{template.file_name}.html.erb")).join("").strip %>
+    </pre>
   </div>
   <div class="template_form">
   </div>

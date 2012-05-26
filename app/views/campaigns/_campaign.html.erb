@@ -7,7 +7,7 @@
   <td><%=l campaign.created_at %></td>
   <td>
     <%= link_to 'Deliver', deliver_campaign_path(campaign.id), :class => 'btn btn-mini btn-primary', :remote => true %>
-    <%= link_to 'preview', preview_path(campaign.template.file_name), :class => 'btn btn-mini btn-primary' %>
+    <%= link_to 'preview', preview_path(campaign.template.file_name), :class => 'btn btn-mini btn-primary', :target => "_blank" %>
     <%= link_to 'Edit', edit_campaign_path(campaign), :class => 'btn btn-mini', :remote => true %>
     <%= link_to 'Destroy', campaign_path(campaign), :method => :delete,
       :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :remote => true %>
