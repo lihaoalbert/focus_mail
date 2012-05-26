@@ -59,7 +59,11 @@
           <%= f.label :template_id, :class => 'control-label' %>
           <div class="controls">
             <%= f.select :template_id, ActiveRecord::Base::Template.all.map{|t| [t.name, t.id]}, { :include_blank => "select a template"} %>
-
+            <div id="template_entries">
+              <% if @campaign && @campaign.template %>
+                You entries are <%= @campaign.template.entries.to_yaml %>
+              <% end %>
+            </div>
           </div>
         </div>
 

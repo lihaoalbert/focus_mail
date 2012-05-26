@@ -3,6 +3,8 @@ class Campaign < ActiveRecord::Base
 
   has_many :campaign_lists
   has_many :lists, :through => :campaign_lists, uniq: true
+  has_many :campaign_entries
+  has_many :entries, :through => :campaign_entries, uniq: true
   belongs_to :template
 
   validates_presence_of :name, :template_id
