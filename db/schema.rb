@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(:version => 20120524153423) do
     t.string   "from_email"
     t.string   "subject"
     t.integer  "template_id"
+    t.text     "entries"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.text     "entries"
   end
 
   create_table "clicks", :force => true do |t|
@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(:version => 20120524153423) do
     t.integer  "link_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "emails", :force => true do |t|
-    t.text     "body"
-    t.integer  "template_id"
-    t.text     "template_entries"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
   end
 
   create_table "entries", :force => true do |t|
