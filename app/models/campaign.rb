@@ -21,11 +21,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-
   def value_of_entry(entry)
     ce = CampaignEntry.where(campaign_id: self.id, entry_id: entry.id).first
     if ce
       ce.value
     end
+  end
+
+  def valid_entries
+    CampaignEntry.where(campaign_id: self.id, :entry_id => self.template.entries.collect(&:id))
   end
 end

@@ -21,4 +21,15 @@ class HomeController < ApplicationController
     #Resque.enqueue(EmailSender, from_name, from_email, subject, to_email, amount, body)
     redirect_to root_path, :notice => "Email is sending"
   end
+
+  def click
+    link_id = params[:l]
+    member_id = params[:u]
+    campaign_id = params[:c]
+
+    link = Link.find(link_id)
+    Click.create(member_id: member_id, campaign_id: campaign_id, link_id: link_id)
+    redirect_to link.url
+  end
+
 end

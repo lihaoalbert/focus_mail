@@ -12,6 +12,8 @@ FocusMail::Application.routes.draw do
 
   resources :campaign_members
 
+  match 'click' => 'home#click'
+
   match 'campaigns/template_entries/:c_id/:t_id' => 'campaigns#template_entries'
   resources :campaigns
   match 'campaigns/:id/deliver/', controller: 'campaigns', action: 'deliver', as: 'deliver_campaign'
@@ -30,7 +32,7 @@ FocusMail::Application.routes.draw do
   get 'members/import_template'
   match 'members/import' => 'members#import', :via => :post
 
-  match 'member_mailer/preview/:file_name', :controller => "member_mailer", :action => "preview", :as => :preview
+  match 'member_mailer/preview/:campaign_id', :controller => "member_mailer", :action => "preview", :as => :preview
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

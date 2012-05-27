@@ -1,13 +1,17 @@
 class MemberMailerController < ApplicationController
   layout false
+  include ApplicationHelper
 
   def preview
-    source = IO.readlines(Rails.root.join('lib/emails', "#{params[:file_name]}.html.erb")).join("").strip
-    source = source.gsub(/\$\|NAME\|\$/, 'neosoyn')
+    campaign = Campaign.find(params[:campaign_id])
+    member_id = 0
+
+    source = replace_email_source(campaign.id, member_id)
+
+    # replace receiver name, receiver email, subject
 
     respond_to do |format|
       format.html { render :text => source }
     end
-
   end
 end

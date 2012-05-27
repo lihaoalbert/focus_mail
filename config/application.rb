@@ -64,5 +64,6 @@ module FocusMail
 
     config.splitor_start = "$|"
     config.splitor_end = "|$"
+    config.host_with_port = "localhost:3000"
   end
 end
