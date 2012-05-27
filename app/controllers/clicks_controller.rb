@@ -1,6 +1,6 @@
 class ClicksController < ApplicationController
   def index
-    @clicks = Click.all
+    @clicks = Click.paginate(:page => params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb
