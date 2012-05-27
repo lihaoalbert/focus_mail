@@ -26,10 +26,20 @@ class HomeController < ApplicationController
     link_id = params[:l]
     member_id = params[:u]
     campaign_id = params[:c]
-
-    link = Link.find(link_id)
-    Click.create(member_id: member_id, campaign_id: campaign_id, link_id: link_id)
+    if link_id && member_id && campaign_id
+      link = Link.find(link_id)
+      Click.create(member_id: member_id, campaign_id: campaign_id, link_id: link_id)
+    end
     redirect_to link.url
+  end
+
+  def track
+    member_id = params[:u]
+    campaign_id = params[:c]
+    if member_id && campaign_id
+      Track.create(member_id: member_id, campaign_id: campaign_id)
+    end
+    send_data open(Rails.root.join("app/assets/images", "track.gif"), 'rb').read, :type => 'image/gif', :disposition => 'inline'
   end
 
 end

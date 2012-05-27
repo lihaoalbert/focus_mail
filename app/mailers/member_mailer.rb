@@ -20,9 +20,15 @@ class MemberMailer < ActionMailer::Base
     to = to_name.present? ? %{"#{to_name}" <#{to_email}>} : to_email
     mail(from: from, to: to, subject: subject) do |format|
       source = replace_email_source(campaign_id, member_id)
-      body = source.gsub(/\$\|NAME\|\$/, to_name)
-      body = source.gsub(/\$\|EMAIL\|\$/, to_email)
-      body = source.gsub(/\$\|SUBJECT\|\$/, subject)
+      source = source.gsub(/\$\|NAME\|\$/, to_name)
+      source = source.gsub(/\$\|EMAIL\|\$/, to_email)
+      source = source.gsub(/\$\|SUBJECT\|\$/, subject)
+
+      # add track code to monitor email open
+      body = "<body>"
+      body << source
+      body << %Q{<img src="http://#{Rails.configuration.host_with_port}/track.gif?c=#{campaign_id}&u=#{member_id}" style="display:none" />}
+      body << "</body>"
 
       format.text { render text: body}
       format.html { render text: "#{body}" }
