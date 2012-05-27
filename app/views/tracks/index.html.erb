@@ -1,17 +1,20 @@
-<h1>邮件打开</h1>
+<h1>邮件打开分析</h1>
 
-<table>
-  <tr>
-    <th>Member</th>
-    <th>Campaign</th>
-  </tr>
-
-<% @tracks.each do |track| %>
-  <tr>
-    <td><%= track.member_id %></td>
-    <td><%= track.campaign_id %></td>
-  </tr>
-<% end %>
+<table class="table table-striped" id="campaigns">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Campaign</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracks.each do |track| %>
+      <tr>
+        <td><%= track.member_id %></td>
+        <td><%= track.campaign_id %></td>
+        <td><%= track.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<br />

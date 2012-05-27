@@ -1,27 +1,22 @@
-<h1>Listing clicks</h1>
+<h1>链接点击分析</h1>
 
-<table>
-  <tr>
-    <th>Member</th>
-    <th>Campaign</th>
-    <th>Link</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @clicks.each do |click| %>
-  <tr>
-    <td><%= click.member_id %></td>
-    <td><%= click.campaign_id %></td>
-    <td><%= click.link_id %></td>
-    <td><%= link_to 'Show', click %></td>
-    <td><%= link_to 'Edit', edit_click_path(click) %></td>
-    <td><%= link_to 'Destroy', click, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<table class="table table-striped" id="campaigns">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Campaign</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clicks.each do |click| %>
+      <tr>
+        <td><%= click.member_id %></td>
+        <td><%= click.campaign_id %></td>
+        <td><%= click.link_id %></td>
+        <td><%= click.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Click', new_click_path %>
