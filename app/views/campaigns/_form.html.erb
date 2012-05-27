@@ -2,6 +2,7 @@
 
   <%= render :partial => "common/form_error", :locals => { model: @campaign} %>
 
+
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab1" data-toggle="tab">Step 1</a></li>
@@ -58,24 +59,25 @@
         <div class="control-group">
           <%= f.label :template_id, :class => 'control-label' %>
           <div class="controls">
-            <%= f.select :template_id, ActiveRecord::Base::Template.all.map{|t| [t.name, t.id]}, { :include_blank => "select a template"} %>
+            <%= f.select :template_id, ActiveRecord::Base::Template.all.map{|t| [t.name, t.id]}, { :include_blank => true}, {:class => "chzn-select", "data-placeholder" => "Choose a Template"} %>
           </div>
         </div>
-      </div>
 
-      <div id="template_entries">
-        <% if @campaign && @campaign.template %>
-          <% @campaign.template.entries.each do |entry| %>
-            <div class="control-group">
-              <%= label_tag "campaign[entry][#{entry.id}]", entry.name, :class => 'control-label' %>
-              <div class="controls">
-                <%= text_field_tag "campaign[entry][#{entry.id}]", entry.default_value, :class => 'text_field' %>
+        <div id="template_entries">
+          <div id="campaign_id_value" style="display:none"><%= @template && @template.id || 0 %></div>
+          <% if @campaign && @campaign.template %>
+            <% @campaign.template.entries.each do |entry| %>
+              <div class="control-group">
+                <%= label_tag "campaign[entry][#{entry.id}]", entry.name, :class => 'control-label' %>
+                <div class="controls">
+                  <%= text_field_tag "campaign[entry][#{entry.id}]", @campaign.value_of_entry(entry) || entry.default_value, :class => 'text_field' %>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
 
+      </div>
     </div>
   </div>
 
@@ -85,3 +87,22 @@
   </div>
 <% end %>
 
+<script>
+  window.onload = function(){
+    var display_campaign_entries;
+
+    $(function() {
+      return $('form #campaign_template_id').chosen().change(function() {
+        return display_campaign_entries($("#campaign_id_value").html(), $("form #campaign_template_id").val());
+      });
+    });
+
+    display_campaign_entries = function(campaign_id, template_id) {
+      return $.ajax({
+        url: 'campaigns/template_entries/' + campaign_id + "/" + template_id,
+        type: 'GET',
+        dateType: 'script'
+      });
+    };
+  };
+</script>

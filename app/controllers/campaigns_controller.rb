@@ -88,4 +88,13 @@ class CampaignsController < ApplicationController
       MemberMailer.send_email_with_template(from, to, subject, template_name).deliver
     end
   end
+
+  def template_entries
+    @template = Template.find(params[:t_id])
+    # because sometime @campaign does not exist when it's a new one
+    @campaign = Campaign.find_by_id(params[:c_id])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

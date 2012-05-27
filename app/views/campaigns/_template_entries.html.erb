@@ -1,0 +1,11 @@
+<div id="campaign_id_value" style="display:none"><%= template && template.id || 0 %></div>
+<% if template && template.entries %>
+  <% template.entries.each do |entry| %>
+    <div class="control-group">
+      <%= label_tag "campaign[entry][#{entry.id}]", entry.name, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag "campaign[entry][#{entry.id}]", campaign && campaign.value_of_entry(entry) || entry.default_value, :class => 'text_field' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

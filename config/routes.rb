@@ -12,6 +12,7 @@ FocusMail::Application.routes.draw do
 
   resources :campaign_members
 
+  match 'campaigns/template_entries/:c_id/:t_id' => 'campaigns#template_entries'
   resources :campaigns
   match 'campaigns/:id/deliver/', controller: 'campaigns', action: 'deliver', as: 'deliver_campaign'
 
