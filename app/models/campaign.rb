@@ -1,11 +1,23 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :email_id, :from_email, :from_name, :name, :subject, :list_ids, :template_id
+  attr_accessible :email_id, :from_email, :from_name, :name, :subject, :list_ids, :template_id, :entry
 
   has_many :campaign_lists
   has_many :lists, :through => :campaign_lists, uniq: true
   has_many :campaign_entries
-  has_many :entries, :through => :campaign_entries, uniq: true
   belongs_to :template
+  attr_accessor :entry
 
   validates_presence_of :name, :template_id
+
+  after_save :save_entry
+  def save_entry
+    if self.entry
+      puts self.entry.to_yaml
+      self.entry.each do |e|
+        ce = CampaignEntry.where(campaign_id: self.id, entry_id: e[0].to_i).first_or_create
+        ce.value = e[1]
+        ce.save
+      end
+    end
+  end
 end
