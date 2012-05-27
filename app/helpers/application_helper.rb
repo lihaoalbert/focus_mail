@@ -17,7 +17,7 @@ module ApplicationHelper
     entries.each do |e|
       v = e.value
       # replace all links with virtual url
-      if %r{^http://www\.(.*)\b}.match(e.value)
+      if %r{^http://(.*)}.match(e.value)
         # create a link
         link = Link.where(:url => v).first_or_create
         v = "http://#{Rails.configuration.host_with_port}/click?u=#{member_id}&c=#{campaign.id}&l=#{link.id}"
