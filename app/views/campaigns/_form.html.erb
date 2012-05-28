@@ -47,7 +47,9 @@
           <div class="controls">
             <% List.all.each do |list| %>
               <%= check_box_tag :list_ids, list.id, @campaign.lists.include?(list), :name => 'campaign[list_ids][]' -%>
-              <%= label_tag :list_ids, list.name, :style => "display:inline" %>
+              <%= label_tag :list_ids, :style => "display:inline" do %>
+                <%= link_to list.name, list_path(list) %>
+              <% end %>
               <br />
               <br />
             <% end %>
