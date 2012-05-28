@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :email_id, :from_email, :from_name, :name, :subject, :list_ids, :template_id, :entry
+  attr_accessible :from_email, :from_name, :name, :subject, :list_ids, :template_id, :entry
 
   has_many :campaign_lists
   has_many :lists, :through => :campaign_lists, uniq: true
@@ -7,7 +7,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :template
   attr_accessor :entry
 
-  validates_presence_of :name, :template_id
+  validates_presence_of :name, :template_id, :from_email, :from_name, :subject
 
   after_save :save_entry
   def save_entry

@@ -66,7 +66,7 @@
         </div>
 
         <div id="template_entries">
-          <div id="campaign_id_value" style="display:none"><%= @template && @template.id || 0 %></div>
+          <div id="campaign_id_value" style="display:none"><%= @campaign && @campaign.id || 0 %></div>
           <% if @campaign && @campaign.template %>
             <% @campaign.template.entries.each do |entry| %>
               <div class="control-group">
