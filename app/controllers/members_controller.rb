@@ -2,7 +2,7 @@ class MembersController < ApplicationController
 
   def index
     @list = List.find(params[:list_id])
-    @members = @list.members
+    @members = @list.members.paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -30,8 +30,6 @@ class MembersController < ApplicationController
     @member = @list.members.find(params[:id])
   end
 
-  # POST /members
-  # POST /members.json
   def create
     @list = List.find(params[:list_id])
     @member = @list.members.create(params[:member])
@@ -47,8 +45,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PUT /members/1
-  # PUT /members/1.json
   def update
     @list = List.find(params[:list_id])
     @member = @list.members.find(params[:id])
@@ -64,15 +60,13 @@ class MembersController < ApplicationController
     end
   end
 
-  # DELETE /members/1
-  # DELETE /members/1.json
   def destroy
     @list = List.find(params[:list_id])
     @member = @list.members.find(params[:id])
     @member.destroy
 
     respond_to do |format|
-      format.html { redirect_to list_members_url(@list.id) }
+      format.html { redirect_to list_members_path(@list.id) }
       format.json { head :no_content }
     end
   end
@@ -102,14 +96,14 @@ class MembersController < ApplicationController
     @list = List.find(params[:list_id])
     file = MemberUploader.new
     file.store!(params[:file])
+    @members = []
+    @errors = Hash.new
+    @counter = 0
 
     if params[:type] == 'xls'
       # import from excel
       book = Spreadsheet.open "#{file.store_path}"
       sheet1 = book.worksheet 0
-      @members = []
-      @errors = Hash.new
-      @counter = 0
 
       sheet1.each 1 do |row|
         @counter+=1
@@ -151,6 +145,11 @@ class MembersController < ApplicationController
         send_data(xls_content_for(nil),
                   :type => "text/excel;charset=utf-8; header=present",
                   :filename => "Template_Members_#{Time.now.strftime("%Y%m%d%H%M")}.xls")
+      }
+      format.csv {
+        send_data(csv_content_for(nil),
+                  :type => "text/excel;charset=utf-8; header=present",
+                  :filename => "Template_Members_#{Time.now.strftime("%Y%m%d%H%M")}.csv")
       }
     end
   end

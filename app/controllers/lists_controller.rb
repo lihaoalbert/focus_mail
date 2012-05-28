@@ -14,15 +14,7 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
-    @list = List.find(params[:id])
-    @members = @list.members.paginate(:page => params[:page], :per_page => 20)
-
-
-    render :template => "members/index"
-    #respond_to do |format|
-      #format.html # show.html.erb
-      #format.json { render json: @list }
-    #end
+    redirect_to list_members_path(params[:id])
   end
 
   # GET /lists/new
