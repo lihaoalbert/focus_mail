@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include ApplicationHelper
+
   def index
   end
 
@@ -17,7 +19,7 @@ class HomeController < ApplicationController
     body = params[:body]
     amount = params[:amount] || 1
 
-    amount.to_i.times{ MemberMailer.send_email(from, to, subject, body).deliver }
+    amount.to_i.times{ FocusMailer.send_email(from, to, subject, body).deliver }
     #Resque.enqueue(EmailSender, from_name, from_email, subject, to_email, amount, body)
     redirect_to root_path, :notice => "Email is sending"
   end
@@ -40,6 +42,16 @@ class HomeController < ApplicationController
       Track.create(member_id: member_id, campaign_id: campaign_id)
     end
     send_data open(Rails.root.join("app/assets/images", "track.gif"), 'rb').read, :type => 'image/gif', :disposition => 'inline'
+  end
+
+
+  def preview
+    campaign = Campaign.find(params[:campaign_id])
+    member_id = 0
+    source = replace_email_source(campaign.id, member_id)
+    respond_to do |format|
+      format.html { render :text => source, :layout => false }
+    end
   end
 
 end

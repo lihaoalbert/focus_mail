@@ -84,7 +84,7 @@ class CampaignsController < ApplicationController
     @campaign.lists.collect(&:members).flatten.each do |member|
       to_email = member.email
       to_name = member.name
-      MemberMailer.send_email_with_template(from, to_email, to_name, member.id, subject, @campaign.id).deliver
+      FocusMailer.send_email_with_template(from, to_email, to_name, member.id, subject, @campaign.id).deliver
     end
   end
 

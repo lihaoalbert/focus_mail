@@ -1,4 +1,4 @@
-class MemberMailer < ActionMailer::Base
+class FocusMailer < ActionMailer::Base
   include Resque::Mailer
   include ApplicationHelper
 

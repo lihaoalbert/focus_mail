@@ -5,6 +5,7 @@ FocusMail::Application.routes.draw do
   match 'click' => 'home#click'
   match 'send_email' => 'home#send_email', via: 'post'
   match 'generate_email' => 'home#generate_email', via: 'get'
+  match 'preview/:campaign_id' => "home#preview", :as => :preview
 
   resources :tracks
   resources :clicks
@@ -25,7 +26,6 @@ FocusMail::Application.routes.draw do
   get   'members/import_template'
   match 'members/imexport/:list_id' => 'members#imexport', :as => :members_imexport
   match 'members/import' => 'members#import', :via => :post
-  match 'member_mailer/preview/:campaign_id' => "member_mailer#preview", :as => :preview
 
   mount Resque::Server, :at => '/resque'
 end
