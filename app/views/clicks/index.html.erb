@@ -13,7 +13,7 @@
       <tr>
         <td><%= click.member ? "#{click.member.name} <#{click.member.email}>" : "-" %></td>
         <td><%= click.campaign ? link_to(click.campaign.name, click.campaign) : "-" %></td>
-        <td><%= click.link ? link_to(click.link.url, click.link) : "-" %></td>
+        <td><%= click.link ? link_to(click.link.url, click.link.url) : "-" %></td>
         <td><%= click.created_at %></td>
       </tr>
     <% end %>
