@@ -11,8 +11,8 @@
   <tbody>
     <% @tracks.each do |track| %>
       <tr>
-        <td><%= track.member_id %></td>
-        <td><%= track.campaign_id %></td>
+        <td><%= track.member ? "#{track.member.name} <#{track.member.email}>" : "-" %></td>
+        <td><%= track.campaign ? link_to(track.campaign.name, track.campaign) : "-" %></td>
         <td><%= track.created_at %></td>
       </tr>
     <% end %>
