@@ -72,7 +72,7 @@ class MembersController < ApplicationController
   end
 
   def export
-    @members = Member.all
+    @members = List.find(params[:list_id]).members
 
     respond_to do |format|
       format.xls {
@@ -93,6 +93,7 @@ class MembersController < ApplicationController
   end
 
   def import
+    require 'csv'
     @list = List.find(params[:list_id])
     file = MemberUploader.new
     file.store!(params[:file])

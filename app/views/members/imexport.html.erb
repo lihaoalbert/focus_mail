@@ -1,6 +1,6 @@
 <h3>导出Members</h3>
-<%= link_to "导出Excel", members_export_path(:format => 'xls'), :class => "btn btn-primary" %>
-<%= link_to "导出CSV", members_export_path(:format => 'csv'), :class => "btn btn-primary" %>
+<%= link_to "导出Excel", members_export_path(:list_id => @list_id, :format => 'xls'), :class => "btn btn-primary" %>
+<%= link_to "导出CSV", members_export_path(:list_id => @list_id, :format => 'csv'), :class => "btn btn-primary" %>
 <br />
 <br />
 <h3>下载导入模板</h3>

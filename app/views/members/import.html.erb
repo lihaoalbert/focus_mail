@@ -12,6 +12,11 @@
   </ul>
 <%else%>
   <h1>Success to import <%= @members.size %> members</h1>
+  <br/>
+  <br/>
+  <% if @members.size > 20 %>
+    下面是前20条的导入成功的用户信息
+  <% end %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -22,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @members.each do |member| %>
+      <% @members.first(20).each do |member| %>
         <tr>
           <td><%= member.id %></td>
           <td><%= link_to member.name, list_member_path(member.list.id, member.id) %></td>
